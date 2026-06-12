@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0b0c0e;
+  color: #f4f1ea;
+}
+
+/* Faint blueprint grid, used as a backdrop on dark sections */
+.grid-backdrop {
+  background-image: linear-gradient(to right, rgba(246, 248, 251, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(246, 248, 251, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Corner registration marks — the page's signature motif,
+   borrowed from technical drawings / blueprints */
+.reg-marks {
+  position: relative;
+}
+.reg-marks::before,
+.reg-marks::after,
+.reg-marks > .rm-tl,
+.reg-marks > .rm-br {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #3D7DFF;
+  opacity: 0.7;
+}
+.reg-marks::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.reg-marks::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+/* Section eyebrow / index tag, monospace */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #3D7DFF;
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.reveal.in-view {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Visible focus ring for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #3D7DFF;
+  outline-offset: 3px;
+}
